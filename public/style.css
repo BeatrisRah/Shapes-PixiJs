@@ -1,0 +1,12 @@
+html, *  {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+body {
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #000000;
+    height: 100vh;
+}
+
