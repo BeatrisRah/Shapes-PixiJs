@@ -1,4 +1,4 @@
-import { Graphics, FederatedPointerEvent } from "pixi.js";
+import { Graphics, FederatedPointerEvent, Point } from "pixi.js";
 
 export abstract class Shape extends Graphics{
     protected _defaultSize: number = 100;
@@ -14,11 +14,7 @@ export abstract class Shape extends Graphics{
         this.interactive = true;
         this.cursor = 'pointer';
 
-        this.on('pointerdown', this._onDragStart);
-        this.on('pointermove', this._onDragMove);
-        this.on('pointerup', this._onDragEnd);
-        this.on('pointerupoutside', this._onDragEnd);
-
+        this.on('pointerdown', this._onDragStart);    
     }
 
     get defaultSize(){
@@ -38,22 +34,29 @@ export abstract class Shape extends Graphics{
         return color;
     }
 
-    _onDragStart(event:FederatedPointerEvent) {
+    private _onDragStart(event:FederatedPointerEvent) {
         this._dragging = true;
-        const pos = event.data.getLocalPosition(this.parent);
+        const pos = event.getLocalPosition(this.parent);
         this.dragOffset.x = this.x - pos.x;
         this.dragOffset.y = this.y - pos.y;
+
+        window.addEventListener('pointermove', this._onGlobalPointerMove);
+        window.addEventListener('pointerup', this._onGlobalPointerUp);
     }
 
-    _onDragMove(event:FederatedPointerEvent) {
+    private _onGlobalPointerMove = (event: PointerEvent): void => {
         if (!this._dragging) return;
-        const pos = event.data.getLocalPosition(this.parent);
+
+
+        const global = new Point(event.clientX, event.clientY);
+        const pos = this.parent.toLocal(global);
+
         this.x = pos.x + this.dragOffset.x;
         this.y = pos.y + this.dragOffset.y;
-    }
-
-    _onDragEnd() {
-        this._dragging = false;
-    }
+    };
     
+    private _onGlobalPointerUp = (): void => {
+        this._dragging = false;
+        window.removeEventListener('pointerup', this._onGlobalPointerUp);
+    };
 }
