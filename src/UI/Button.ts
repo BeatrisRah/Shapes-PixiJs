@@ -16,11 +16,24 @@ export class Button extends Container{
 
         const {x, y, label, onClick} = optins;
 
+        this.x = x;
+        this.y = y;
+
         this.bg = new Graphics()
-            .roundRect(x, y, this.size, this.size)
+            .roundRect(0, 0, this.size, this.size)
             .stroke(0x00ff00);
         
-        this.labelBtn = new Text({text: label})
+        this.labelBtn = new Text({
+            text: label,
+            style: {
+                align: 'center'
+            }
+        })
+
+        this.labelBtn.anchor.set(0.5)
+
+        this.labelBtn.x = this.size / 2;
+        this.labelBtn.y = this.size / 2;
 
         this.addChild(this.bg, this.labelBtn);
 
