@@ -21,7 +21,8 @@ export class Button extends Container{
 
         this.bg = new Graphics()
             .roundRect(0, 0, this.size, this.size)
-            .stroke({width: 2, color:'#E5E5E5'});
+            .fill('#232b2b');
+
         
         this.labelBtn = new Text({
             text: label,
@@ -38,6 +39,8 @@ export class Button extends Container{
 
         this.addChild(this.bg, this.labelBtn);
 
+        this.eventMode = 'static';
+        this.cursor = 'pointer'; 
         this.on('pointerdown', onClick)
 
     }
