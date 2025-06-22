@@ -21,12 +21,13 @@ export class Button extends Container{
 
         this.bg = new Graphics()
             .roundRect(0, 0, this.size, this.size)
-            .stroke(0x00ff00);
+            .stroke({width: 2, color:'#E5E5E5'});
         
         this.labelBtn = new Text({
             text: label,
             style: {
-                align: 'center'
+                align: 'center',
+                fill:'#E5E5E5'
             }
         })
 
