@@ -12,7 +12,7 @@ export class PixiApp extends Application {
     public async begin(){
         await this.init({
             resizeTo:window, 
-            background:'#1099bb'})
+            background:'#0e1111'})
 
         this.stage.addChild(this.game)
         this.game.start()

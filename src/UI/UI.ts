@@ -13,7 +13,9 @@ export class UI extends Container{
         super({isRenderGroup:true});
 
         this.circleButtonCreate = new Button({x: 0, y: 0, label:'Circle', onClick: () => null});
-        this.recButtonCreate = new Button({x: 0, y: 0, label:'Circle', onClick: () => null});
-        this.stareButtonCreate = new Button({x: 0, y: 0, label:'Circle', onClick: () => null});
+        this.recButtonCreate = new Button({x: 110, y: 0, label:'Rect', onClick: () => null});
+        this.stareButtonCreate = new Button({x: 220, y: 0, label:'Star', onClick: () => null});
+
+        this.addChild(this.circleButtonCreate, this.recButtonCreate, this.stareButtonCreate)
     }
 }
