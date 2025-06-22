@@ -1,0 +1,1 @@
+export type shapeTypes = 'Circle' | 'Rectangle' | 'Star';
