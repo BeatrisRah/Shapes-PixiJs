@@ -4,6 +4,7 @@ import { UI } from "../UI/UI";
 import { shapeTypes } from "../types";
 import { Circle } from "../objects/Circle";
 import { Rectangle } from "../objects/Rectangle";
+import { Star } from "../objects/Star";
 
 export class Game extends Container {
     private ui: UI = new UI();
@@ -42,6 +43,7 @@ export class Game extends Container {
                 shape = new Rectangle()
                 break;
             case "Star":
+                shape = new Star()
         }
 
         this.addChild(shape!) //TODO: <-- change to Playground 
