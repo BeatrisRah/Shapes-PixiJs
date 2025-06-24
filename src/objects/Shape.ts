@@ -40,6 +40,8 @@ export abstract class Shape extends Graphics{
         this.dragOffset.x = this.x - pos.x;
         this.dragOffset.y = this.y - pos.y;
 
+        this.emit('moveToFront');
+
         window.addEventListener('pointermove', this._onGlobalPointerMove);
         window.addEventListener('pointerup', this._onGlobalPointerUp);
     }

@@ -9,6 +9,7 @@ import { Star } from "../objects/Star";
 export class Game extends Container {
     private ui: UI = new UI();
     private shapeCount: number = 0;
+    private lastedTouched!: Graphics;
     constructor(){
         super();
         this.renderUI()
@@ -46,9 +47,15 @@ export class Game extends Container {
                 shape = new Star()
         }
 
+        shape.on('moveToFront', () => {
+            this.lastedTouched = shape;
+            this.moveToFront()
+        })
         this.addChild(shape!) //TODO: <-- change to Playground 
+    }
 
-
-
+    private moveToFront(){
+        if(this.children.length === 0) return;
+        this.setChildIndex(this.lastedTouched, this.children.length - 1)
     }
 }
