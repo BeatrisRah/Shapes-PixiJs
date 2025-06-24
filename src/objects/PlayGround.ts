@@ -7,6 +7,7 @@ export class PLayGround extends Container{
 
         this.defaultWidth = window.innerWidth * 0.9
         this.setSize(this.defaultWidth, 500)
+        
 
     }
 }

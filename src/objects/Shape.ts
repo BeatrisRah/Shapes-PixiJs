@@ -14,7 +14,7 @@ export abstract class Shape extends Graphics{
         this.interactive = true;
         this.cursor = 'pointer';
 
-        this.on('pointerdown', this._onDragStart);    
+        this.on('pointerdown', this._onDragStart.bind(this));    
     }
 
     get defaultSize(){

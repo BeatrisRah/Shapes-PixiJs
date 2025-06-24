@@ -3,6 +3,7 @@ import { Container, Graphics } from "pixi.js";
 import { UI } from "../UI/UI";
 import { shapeTypes } from "../types";
 import { Circle } from "../objects/Circle";
+import { Rectangle } from "../objects/Rectangle";
 
 export class Game extends Container {
     private ui: UI = new UI();
@@ -38,6 +39,8 @@ export class Game extends Container {
                 shape = new Circle()
                 break;
             case "Rectangle":
+                shape = new Rectangle()
+                break;
             case "Star":
         }
 
