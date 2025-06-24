@@ -53,8 +53,16 @@ export abstract class Shape extends Graphics{
         const global = new Point(event.clientX, event.clientY);
         const pos = this.parent.toLocal(global);
 
-        this.x = pos.x + this.dragOffset.x;
-        this.y = pos.y + this.dragOffset.y;
+        let newX = pos.x + this.dragOffset.x;
+        let newY = pos.y + this.dragOffset.y;
+
+        const parentBounds = this.parent.getLocalBounds();
+
+        newX = Math.max(parentBounds.x, Math.min(newX, parentBounds.x + parentBounds.width - this.width));
+        newY = Math.max(parentBounds.y, Math.min(newY, parentBounds.y + parentBounds.height - this.height));
+
+        this.x = newX;
+        this.y = newY;
     };
     
     private _onGlobalPointerUp = (): void => {

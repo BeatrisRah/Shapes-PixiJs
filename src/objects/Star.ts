@@ -2,7 +2,8 @@ import { Shape } from "./Shape";
 
 export class Star extends Shape{
     init(): void {
-        this.star(0 ,0, 5, this.defaultSize).fill(this.color)
+        const r = this.defaultSize / 2;
+        this.star(r ,r, 5, r).fill(this.color)
         
     }
 }
