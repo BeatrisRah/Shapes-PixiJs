@@ -3,7 +3,7 @@ import { Button } from "./Button";
 import { shapeTypes } from "../types";
 
 export class UI extends Container{
-    private _currShapesCount: number = 0;
+    public _currShapesCount: number = 0;
 
     // hard coded for now so not best for a scaling
     private circleButtonCreate: Button;
@@ -11,13 +11,11 @@ export class UI extends Container{
     private stareButtonCreate: Button;
     
     constructor(){
-        super({isRenderGroup:true});
+        super();
 
         this.circleButtonCreate = new Button({x: 0, y: 0, label:'Circle', onClick: () => this.createShape('Circle')});
         this.recButtonCreate = new Button({x: 110, y: 0, label:'Rect', onClick: () => this.createShape('Rectangle')});
         this.stareButtonCreate = new Button({x: 220, y: 0, label:'Star', onClick: () => this.createShape('Star')});
-
-        // TODO: Add shapes counter
 
         this.addChild(this.circleButtonCreate, this.recButtonCreate, this.stareButtonCreate)
     }

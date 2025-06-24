@@ -5,15 +5,17 @@ import { shapeTypes } from "../types";
 import { Circle } from "../objects/Circle";
 import { Rectangle } from "../objects/Rectangle";
 import { Star } from "../objects/Star";
+import { PLayGround } from "../objects/PlayGround";
 
 export class Game extends Container {
     private ui: UI = new UI();
+    private playGround: PLayGround = new PLayGround();
     private shapeCount: number = 0;
     private lastedTouched!: Graphics;
     constructor(){
         super();
         this.renderUI()
-        
+        this.renderPlayground()
     }
 
     public start(){
@@ -22,6 +24,11 @@ export class Game extends Container {
         this.ui.on('shapeCreated', (payload) => this.createShape(payload), this)
     }
 
+    private renderPlayground(){
+        this.addChild(this.playGround)
+
+        this.playGround.x = (window.innerWidth - this.playGround.width) / 2
+    }
     private renderUI(){
         this.ui.x = (window.innerWidth / 2) - (this.ui.width / 2);
         this.ui.y = window.innerHeight - (this.ui.height + 10);
@@ -51,11 +58,11 @@ export class Game extends Container {
             this.lastedTouched = shape;
             this.moveToFront()
         })
-        this.addChild(shape!) //TODO: <-- change to Playground 
+        this.playGround.addChild(shape!) //TODO: <-- change to Playground 
     }
 
     private moveToFront(){
-        if(this.children.length === 0) return;
-        this.setChildIndex(this.lastedTouched, this.children.length - 1)
+        if(this.playGround.children.length === 0) return;
+        this.playGround.setChildIndex(this.lastedTouched, this.playGround.children.length - 1)
     }
 }
